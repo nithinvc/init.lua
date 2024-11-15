@@ -1,4 +1,4 @@
-return ({
+return {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -9,4 +9,4 @@ return ({
         changedelete = { text = '~' },
       },
     },
-})
+}
