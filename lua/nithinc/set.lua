@@ -7,10 +7,10 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Not sure what this actually does? It just seems to add space left of the line numbers?
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 400
 
 -- Splits? Seems useful but right now I don't even use splits lol
 -- vim.opt.splitright = true
@@ -18,10 +18,10 @@ vim.opt.timeoutlen = 300
 
 -- Displaying whitespace chars
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Live substitutions
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
