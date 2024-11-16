@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 -- New commands
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "[P]roject [V]iew. Brings up file directory." })
+vim.keymap.set("n", "<leader>;v", vim.cmd.Ex, { desc = "[P]roject [V]iew. Brings up file directory." })
 
 -- clear highlights after searching
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
