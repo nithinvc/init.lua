@@ -188,7 +188,7 @@ return {
 					},
 				},
 			},
-			--[[basedpyright = {
+			basedpyright = {
 				cmd = { "basedpyright-langserver", "--stdio" },
 				filetypes = { "python" },
 				settings = {
@@ -202,9 +202,9 @@ return {
 						},
 					},
 				},
-			}, --]]
+			},
 			ruff = {
-				cmd = { "ruff", "server" },
+				-- cmd = { "ruff server" },
 				filetypes = { "python" },
 				settings = {},
 			},
