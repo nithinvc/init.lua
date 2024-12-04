@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 -- New commands
-vim.keymap.set("n", "<leader>;v", vim.cmd.Ex, { desc = "[P]roject [V]iew. Brings up file directory." })
+vim.keymap.set("n", "<leader>;v", vim.cmd.Ex, { desc = "Project [V]iew. Brings up file directory." })
 
 -- clear highlights after searching
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -32,3 +32,9 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- fun
 vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+
+-- Remap to turn on and off inline lsp warnings and errors
+local function toggle_vt()
+	vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+end
+vim.keymap.set("n", "<leader>vt", toggle_vt, { desc = "Toggle [v]irtual [t]ext" })
