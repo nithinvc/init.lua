@@ -40,6 +40,8 @@ end
 vim.keymap.set("n", "<leader>vt", toggle_vt, { desc = "Toggle [v]irtual [t]ext" })
 
 -- Copies the current line and pastes below. The current line is commented out.
-vim.keymap.set("n", "yc", "yygccp")
+vim.keymap.set("n", "yc", function()
+	vim.api.nvim_feedkeys("yygccp", "m", false)
+end)
 -- TODO: I got the last one from https://www.reddit.com/r/neovim/comments/1h7f0bz/share_your_coolest_keymap/
 -- There are probably more cool ones to yoink
