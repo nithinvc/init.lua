@@ -137,7 +137,7 @@ return {
 
 		-- Change diagnostic symbols in the sign column (gutter)
 		-- if vim.g.have_nerd_font then
-		--   local signs = { Error = '', Warn = '', Hint = '', Info = '' }
+		--   local signs = { Error = '', Warn = '', Hint = '', Info = '' }
 		--   for type, icon in pairs(signs) do
 		--     local hl = 'DiagnosticSign' .. type
 		--     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -188,21 +188,6 @@ return {
 					},
 				},
 			},
-			basedpyright = {
-				cmd = { "basedpyright-langserver", "--stdio" },
-				filetypes = { "python" },
-				settings = {
-					basedpyright = {
-						-- Using Ruff's import organizer
-						disableOrganizeImports = true,
-						analysis = {
-							autoSearchPaths = true,
-							diagnosticMode = "openFilesOnly",
-							useLibraryCodeForTypes = true,
-						},
-					},
-				},
-			},
 			ruff = {
 				-- cmd = { "ruff server" },
 				filetypes = { "python" },
@@ -238,5 +223,15 @@ return {
 				end,
 			},
 		})
+
+		-- Pyrefly (Meta's Python type checker) - not in Mason.
+		-- Install via: uv tool install pyrefly
+		vim.lsp.config("pyrefly", {
+			cmd = { "pyrefly", "lsp" },
+			filetypes = { "python" },
+			root_markers = { "pyproject.toml", "setup.py", "setup.cfg", ".git" },
+			capabilities = capabilities,
+		})
+		vim.lsp.enable("pyrefly")
 	end,
 }

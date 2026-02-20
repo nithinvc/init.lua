@@ -59,13 +59,16 @@ return { -- Autocompletion
 				-- Accept ([y]es) the completion.
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
-				["<C-y>"] = cmp.mapping.confirm({ select = true }),
-
-				-- If you prefer more traditional completion keymaps,
-				-- you can uncomment the following lines
-				--['<CR>'] = cmp.mapping.confirm { select = true },
-				--['<Tab>'] = cmp.mapping.select_next_item(),
-				--['<S-Tab>'] = cmp.mapping.select_prev_item(),
+				--  Falls through to Copilot ghost text if cmp menu isn't visible.
+				["<C-y>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.confirm({ select = true })
+					elseif require("copilot.suggestion").is_visible() then
+						require("copilot.suggestion").accept()
+					else
+						fallback()
+					end
+				end),
 
 				-- Manually trigger a completion from nvim-cmp.
 				--  Generally you don't need this, because nvim-cmp will display
@@ -105,5 +108,13 @@ return { -- Autocompletion
 				{ name = "path" },
 			},
 		})
+
+		-- Hide Copilot ghost text when cmp menu is open to prevent visual clashing
+		cmp.event:on("menu_opened", function()
+			vim.b.copilot_suggestion_hidden = true
+		end)
+		cmp.event:on("menu_closed", function()
+			vim.b.copilot_suggestion_hidden = false
+		end)
 	end,
 }
