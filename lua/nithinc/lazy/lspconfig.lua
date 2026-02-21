@@ -226,6 +226,9 @@ return {
 
 		-- Pyrefly (Meta's Python type checker) - not in Mason.
 		-- Install via: uv tool install pyrefly
+		-- Uses vim.lsp.config/enable (Neovim 0.11+ native API).
+		-- We pass capabilities here, then enable it. vim.lsp.enable will
+		-- attach to matching buffers (including already-open ones).
 		vim.lsp.config("pyrefly", {
 			cmd = { "pyrefly", "lsp" },
 			filetypes = { "python" },
@@ -233,5 +236,12 @@ return {
 			capabilities = capabilities,
 		})
 		vim.lsp.enable("pyrefly")
+
+		-- Reattach to any already-open Python buffers
+		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.bo[buf].filetype == "python" and vim.api.nvim_buf_is_loaded(buf) then
+				vim.api.nvim_exec_autocmds("FileType", { buffer = buf })
+			end
+		end
 	end,
 }

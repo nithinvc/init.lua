@@ -1,6 +1,6 @@
 return { -- Fuzzy Finder (files, lsp, etc)
 	"nvim-telescope/telescope.nvim",
-	branch = "master",
+	version = "*",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		-- Useful for getting pretty icons, but requires a Nerd Font.
@@ -49,9 +49,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			},
 		})
 		require("telescope").load_extension("fzf")
-
-		-- Enable Telescope extensions if they are installed
-		pcall(require("telescope").load_extension, "fzf")
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
